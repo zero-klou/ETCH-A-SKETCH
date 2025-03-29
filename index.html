@@ -4,6 +4,35 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body></body>
+	<body>
+		<div class="game">
+			<div class="controls">
+				<input
+					class="control"
+					type="number"
+					id="rows"
+					placeholder="rows"
+					min="0"
+					max="100"
+					value="16"
+				/>
+				<input
+					class="control"
+					type="number"
+					id="cols"
+					placeholder="cols"
+					min="0"
+					max="100"
+					value="16"
+				/>
+				<button id="create" class="control">Create</button>
+				<button id="clear" class="control">Clear</button>
+			</div>
+			<div class="grid"></div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
 </html>
