@@ -6,6 +6,10 @@
 const controls = {
 	clear: document.querySelector("#clear"),
 	create: document.querySelector("#create"),
+	mode: {
+		black: document.querySelector("#black-mode"),
+		rgb: document.querySelector("#rgb-mode"),
+	},
 };
 
 function createGrid(rows = 16, cols = 16) {
@@ -24,14 +28,48 @@ function createGrid(rows = 16, cols = 16) {
 	}
 }
 
+function getRandomRGB() {
+	let randomValue = Math.floor(Math.random() * 10); // random value 0 to 9
+
+	switch (randomValue) {
+		case 1:
+		case 2:
+		case 3:
+			return "red";
+
+		case 4:
+		case 5:
+		case 6:
+			return "green";
+
+		case 7:
+		case 8:
+		case 9:
+			return "blue";
+
+		case 0:
+			return getRandomRGB();
+	}
+}
+
 function fillPix(e) {
 	const pix = e.target;
-	pix.style["background-color"] = "#000";
+
+	if (controls.mode.black.checked) {
+		pix.style["opacity"] = `${0.1 + +window.getComputedStyle(pix).opacity}`;
+		pix.style["background-color"] = "#000";
+	} else if (controls.mode.rgb.checked) {
+		pix.style["opacity"] = "1";
+		pix.style["background-color"] = getRandomRGB();
+	}
 }
 
 function unfillPix() {
 	const pixes = document.querySelectorAll(".pix");
-	pixes.forEach((pix) => (pix.style["background-color"] = "#fff"));
+	pixes.forEach((pix) => {
+		pix.style["background-color"] = "#fff";
+		pix.style["opacity"] = "0";
+	});
 }
 
 /**
